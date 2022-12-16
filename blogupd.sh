@@ -1,1 +1,1 @@
-hexo clean && hexo g && hexo d
+git add . && git commit -m "Update Blog" && git push origin master
