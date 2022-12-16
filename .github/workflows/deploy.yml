@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js 10.x
         uses: actions/setup-node@master
         with:
-          node-version: "10.x"
+          node-version: "14"
 
       #安装依赖(包含yuque-hexo，此处无需安装) from https://github.com/x-cold/yuque-hexo
       - name: Install dependencies
