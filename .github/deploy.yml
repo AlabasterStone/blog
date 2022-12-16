@@ -1,0 +1,49 @@
+# workflow name
+name: Deploy Hexo
+
+# 当有 push 到仓库和外部触发的时候就运行
+on: [push, repository_dispatch]
+
+# YQ_TOKEN
+# YUQUE_GIT_HEXO
+jobs:
+  deploy:
+    name: Deploy Hexo Public To Pages
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+
+    steps:
+      # check it to your workflow can access it
+      # from: https://github.com/actions/checkout
+      - name: Checkout Repository master branch
+        uses: actions/checkout@master
+
+      # from: https://github.com/actions/setup-node
+      - name: Setup Node.js 10.x
+        uses: actions/setup-node@master
+        with:
+          node-version: "10.x"
+
+      #安装依赖(包含yuque-hexo，此处无需安装) from https://github.com/x-cold/yuque-hexo
+      - name: Install dependencies
+        run: |
+          npm install hexo-cli -g
+          npm install
+
+      # 生成可访问的文档
+      - name: hexo generate
+        run: |
+          hexo clean
+          hexo generate
+
+      # 生成pages且推送到文件仓库 from https://github.com/peaceiris/actions-gh-pages
+      - name: Deploy hexo to Github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.HEXO_DEPLOY_KEY }} # 此处为 hexo-deploy-key
+          external_repository: AlabasterStone/AlabasterStone.github.io
+          publish_branch: master
+          publish_dir: ./public
+          commit_message: deploy github pages
+          # commit_message: ${{ github.event.head_commit.message }}
