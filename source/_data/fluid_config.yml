@@ -1,0 +1,22 @@
+index:
+  banner_img: /img/banner.jpg
+  banner_img_height: 100
+post:
+  banner_img: /img/banner.jpg
+  banner_img_height: 70
+  default_index_img: 
+archive:
+  banner_img: /img/banner.jpg
+  banner_img_height: 60
+category:
+  banner_img: /img/banner.jpg
+  banner_img_height: 60
+tag:
+  banner_img: /img/banner.jpg
+  banner_img_height: 80
+about:
+  banner_img: /img/banner.jpg
+  banner_img_height: 60
+links:
+  banner_img: /img/banner.jpg
+  banner_img_height: 60
